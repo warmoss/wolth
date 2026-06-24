@@ -1,4 +1,4 @@
-# Justfile for solon
+# Justfile for wolth
 
 # Show available commands
 list:

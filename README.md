@@ -1,11 +1,11 @@
-# solon
+# wolth
 
-![PyPI version](https://img.shields.io/pypi/v/solon.svg)
+![PyPI version](https://img.shields.io/pypi/v/wolth.svg)
 
-solon is a useful toolkit.
+wolth is a useful toolkit.
 
-* GitHub: https://github.com/warmoss/solon/
-* PyPI package: https://pypi.org/project/solon/
+* GitHub: https://github.com/warmoss/wolth/
+* PyPI package: https://pypi.org/project/wolth/
 * Created by: **[warmoss](https://audrey.feldroy.com/)** | GitHub https://github.com/warmoss | PyPI https://pypi.org/user/warmoss/
 * Free software: MIT License
 
@@ -17,7 +17,7 @@ solon is a useful toolkit.
 
 Documentation is built with [Zensical](https://zensical.org/) and deployed to GitHub Pages.
 
-* **Live site:** https://warmoss.github.io/solon/
+* **Live site:** https://warmoss.github.io/wolth/
 * **Preview locally:** `just docs-serve` (serves at http://localhost:8000)
 * **Build:** `just docs-build`
 
@@ -31,8 +31,8 @@ To set up for local development:
 
 ```bash
 # Clone your fork
-git clone git@github.com:your_username/solon.git
-cd solon
+git clone git@github.com:your_username/wolth.git
+cd wolth
 
 # Install in editable mode with live updates
 uv tool install --editable .
@@ -40,7 +40,7 @@ uv tool install rust-just
 winget install --id GitHub.cli
 ```
 
-This installs the CLI globally but with live updates - any changes you make to the source code are immediately available when you run `solon`.
+This installs the CLI globally but with live updates - any changes you make to the source code are immediately available when you run `wolth`.
 
 Run tests:
 
@@ -56,6 +56,6 @@ just qa
 
 ## Author
 
-solon was created in 2026 by warmoss.
+wolth was created in 2026 by warmoss.
 
 Built with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.

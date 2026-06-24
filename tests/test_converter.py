@@ -1,8 +1,8 @@
 """Tests for the converter module (enhance / to_dict)."""
 
-from solon.collections.enhanced.converter import enhance, to_dict
-from solon.collections.enhanced.enhanced_dict import EnhancedDict
-from solon.collections.enhanced.enhanced_list import EnhancedList
+from wolth.collections.enhanced.converter import enhance, to_dict
+from wolth.collections.enhanced.enhanced_dict import EnhancedDict
+from wolth.collections.enhanced.enhanced_list import EnhancedList
 
 
 class TestEnhance:

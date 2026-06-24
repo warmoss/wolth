@@ -1,8 +1,8 @@
-"""Tests for the solon CLI."""
+"""Tests for the wolth CLI."""
 
 from typer.testing import CliRunner
 
-from solon.cli import app
+from wolth.cli import app
 
 runner = CliRunner()
 
@@ -11,7 +11,7 @@ class TestCli:
     """Test the CLI application."""
 
     def test_main_command_runs_successfully(self):
-        """Running `solon` without arguments should exit with code 0."""
+        """Running `wolth` without arguments should exit with code 0."""
         result = runner.invoke(app, [])
         assert result.exit_code == 0
 
@@ -21,10 +21,10 @@ class TestCli:
         assert result.stdout is not None
 
     def test_help_output(self):
-        """Running `solon --help` should show help text."""
+        """Running `wolth --help` should show help text."""
         result = runner.invoke(app, ["--help"])
         assert result.exit_code == 0
-        assert "solon" in result.stdout
+        assert "wolth" in result.stdout
         assert "toolkit" in result.stdout.lower() or "useful" in result.stdout.lower()
 
     def test_version_not_implemented(self):

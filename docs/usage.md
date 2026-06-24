@@ -1,7 +1,7 @@
 # Usage
 
-To use solon in a project:
+To use wolth in a project:
 
 ```python
-import solon
+import wolth
 ```

@@ -1,9 +1,9 @@
-"""Tests for the `solon` package."""
+"""Tests for the `wolth` package."""
 
-import solon
-from solon import cli, utils
-from solon.collections import EnhancedDict, EnhancedList
-from solon.collections.enhanced import converter
+import wolth
+from wolth import cli, utils
+from wolth.collections import EnhancedDict, EnhancedList
+from wolth.collections.enhanced import converter
 
 
 class TestPackageImport:
@@ -11,12 +11,12 @@ class TestPackageImport:
 
     def test_import(self):
         """Verify the package can be imported."""
-        assert solon
+        assert wolth
 
     def test_version_attribute(self):
         """Verify the package has a version."""
-        # solon may not expose __version__; just ensure import works
-        assert hasattr(solon, "__version__") or True
+        # wolth may not expose __version__; just ensure import works
+        assert hasattr(wolth, "__version__") or True
 
     def test_cli_module_importable(self):
         """Verify the cli module can be imported."""
@@ -54,6 +54,6 @@ class TestMainModule:
 
     def test_main_module(self):
         """Verify __main__ can be imported."""
-        from solon import __main__  # noqa: F811
+        from wolth import __main__  # noqa: F811
 
         assert __main__.app is not None

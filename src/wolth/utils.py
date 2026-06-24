@@ -1,4 +1,4 @@
-from solon.collections import EnhancedDict
+from wolth.collections import EnhancedDict
 
 
 def do_something_useful() -> None:

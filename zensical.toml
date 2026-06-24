@@ -1,8 +1,8 @@
 [project]
-site_name = "solon"
-site_url = "https://warmoss.github.io/solon/"
-repo_url = "https://github.com/warmoss/solon"
-repo_name = "warmoss/solon"
+site_name = "wolth"
+site_url = "https://warmoss.github.io/wolth/"
+repo_url = "https://github.com/warmoss/wolth"
+repo_name = "warmoss/wolth"
 
 nav = [
   { "Home" = "index.md" },

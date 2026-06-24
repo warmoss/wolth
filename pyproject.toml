@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "solon"
-version = "0.1.0"
-description = "solon is a useful toolkit."
+name = "wolth"
+version = "0.2.0"
+description = "wolth is a useful toolkit."
 readme = "README.md"
 authors = [
   {name = "maks", email = "maks@sapling.ink"}
@@ -46,13 +46,13 @@ docs = [
 ]
 
 [project.urls]
-bugs = "https://github.com/warmoss/solon/issues"
-changelog = "https://github.com/warmoss/solon/releases"
-documentation = "https://warmoss.github.io/solon/"
-homepage = "https://github.com/warmoss/solon"
+bugs = "https://github.com/warmoss/wolth/issues"
+changelog = "https://github.com/warmoss/wolth/releases"
+documentation = "https://warmoss.github.io/wolth/"
+homepage = "https://github.com/warmoss/wolth"
 
 [project.scripts]
-solon = "solon.cli:app"
+wolth = "wolth.cli:app"
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.
