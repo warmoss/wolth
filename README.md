@@ -1,11 +1,11 @@
-# solan
+# solon
 
-![PyPI version](https://img.shields.io/pypi/v/solan.svg)
+![PyPI version](https://img.shields.io/pypi/v/solon.svg)
 
-Solan is a useful toolkit.
+solon is a useful toolkit.
 
-* GitHub: https://github.com/warmoss/solan/
-* PyPI package: https://pypi.org/project/solan/
+* GitHub: https://github.com/warmoss/solon/
+* PyPI package: https://pypi.org/project/solon/
 * Created by: **[warmoss](https://audrey.feldroy.com/)** | GitHub https://github.com/warmoss | PyPI https://pypi.org/user/warmoss/
 * Free software: MIT License
 
@@ -17,7 +17,7 @@ Solan is a useful toolkit.
 
 Documentation is built with [Zensical](https://zensical.org/) and deployed to GitHub Pages.
 
-* **Live site:** https://warmoss.github.io/solan/
+* **Live site:** https://warmoss.github.io/solon/
 * **Preview locally:** `just docs-serve` (serves at http://localhost:8000)
 * **Build:** `just docs-build`
 
@@ -31,8 +31,8 @@ To set up for local development:
 
 ```bash
 # Clone your fork
-git clone git@github.com:your_username/solan.git
-cd solan
+git clone git@github.com:your_username/solon.git
+cd solon
 
 # Install in editable mode with live updates
 uv tool install --editable .
@@ -40,7 +40,7 @@ uv tool install rust-just
 winget install --id GitHub.cli
 ```
 
-This installs the CLI globally but with live updates - any changes you make to the source code are immediately available when you run `solan`.
+This installs the CLI globally but with live updates - any changes you make to the source code are immediately available when you run `solon`.
 
 Run tests:
 
@@ -56,6 +56,6 @@ just qa
 
 ## Author
 
-solan was created in 2026 by warmoss.
+solon was created in 2026 by warmoss.
 
 Built with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.

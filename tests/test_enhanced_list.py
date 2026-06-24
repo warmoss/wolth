@@ -1,7 +1,7 @@
 """Tests for EnhancedList."""
 
-from solan.collections.enhanced.enhanced_dict import EnhancedDict
-from solan.collections.enhanced.enhanced_list import EnhancedList
+from solon.collections.enhanced.enhanced_dict import EnhancedDict
+from solon.collections.enhanced.enhanced_list import EnhancedList
 
 
 class TestEnhancedListInit:

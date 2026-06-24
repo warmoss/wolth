@@ -2,37 +2,37 @@
 
 ## Stable release
 
-To install solan, run this command in your terminal:
+To install solon, run this command in your terminal:
 
 ```sh
-uv add solan
+uv add solon
 ```
 
 Or if you prefer to use `pip`:
 
 ```sh
-pip install solan
+pip install solon
 ```
 
 ## From source
 
-The source files for solan can be downloaded from the [Github repo](https://github.com/warmoss/solan).
+The source files for solon can be downloaded from the [Github repo](https://github.com/warmoss/solon).
 
 You can either clone the public repository:
 
 ```sh
-git clone https://github.com/warmoss/solan
+git clone https://github.com/warmoss/solon
 ```
 
-Or download the [tarball](https://github.com/warmoss/solan/tarball/main):
+Or download the [tarball](https://github.com/warmoss/solon/tarball/main):
 
 ```sh
-curl -OJL https://github.com/warmoss/solan/tarball/main
+curl -OJL https://github.com/warmoss/solon/tarball/main
 ```
 
 Once you have a copy of the source, you can install it with:
 
 ```sh
-cd solan
+cd solon
 uv sync
 ```

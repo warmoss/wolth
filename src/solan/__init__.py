@@ -1,1 +1,1 @@
-"""Top-level package for solan."""
+"""Top-level package for solon."""

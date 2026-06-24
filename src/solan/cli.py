@@ -1,9 +1,9 @@
-"""Console script for solan."""
+"""Console script for solon."""
 
 import typer
 from rich.console import Console
 
-from solan import utils
+from solon import utils
 
 app = typer.Typer()
 console = Console()

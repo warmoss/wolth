@@ -1,7 +1,7 @@
 # Usage
 
-To use solan in a project:
+To use solon in a project:
 
 ```python
-import solan
+import solon
 ```

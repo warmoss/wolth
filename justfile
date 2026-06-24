@@ -1,4 +1,4 @@
-# Justfile for solan
+# Justfile for solon
 
 # Show available commands
 list:
