@@ -13,6 +13,7 @@ wolth is a useful toolkit.
 
 * EnhancedList
 * EnhancedDict
+* Counter
 
 ## Documentation
 
