@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wolth"
-version = "0.5.0"
+version = "0.6.0"
 description = "wolth is a useful toolkit."
 readme = "README.md"
 authors = [
