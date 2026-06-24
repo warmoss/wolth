@@ -11,7 +11,8 @@ wolth is a useful toolkit.
 
 ## Features
 
-* TODO
+* EnhancedList
+* EnhancedDict
 
 ## Documentation
 
