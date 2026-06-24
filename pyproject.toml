@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wolth"
-version = "0.2.0"
+version = "0.3.0"
 description = "wolth is a useful toolkit."
 readme = "README.md"
 authors = [
@@ -50,9 +50,6 @@ bugs = "https://github.com/warmoss/wolth/issues"
 changelog = "https://github.com/warmoss/wolth/releases"
 documentation = "https://warmoss.github.io/wolth/"
 homepage = "https://github.com/warmoss/wolth"
-
-[project.scripts]
-wolth = "wolth.cli:app"
 
 [tool.ty]
 # All rules are enabled as "error" by default; no need to specify unless overriding.
