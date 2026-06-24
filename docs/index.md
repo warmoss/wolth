@@ -1,6 +1,6 @@
 # wolth
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
+Wolth is a useful toolkit.
 
 ## Getting started
 
