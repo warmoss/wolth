@@ -36,6 +36,8 @@ cd solan
 
 # Install in editable mode with live updates
 uv tool install --editable .
+uv tool install rust-just
+winget install --id GitHub.cli
 ```
 
 This installs the CLI globally but with live updates - any changes you make to the source code are immediately available when you run `solan`.
