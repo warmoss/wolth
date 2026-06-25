@@ -14,6 +14,9 @@ wolth is a useful toolkit.
 * EnhancedList
 * EnhancedDict
 * Counter
+* util.files
+* util.jsons
+* util.processes
 
 ## Documentation
 
