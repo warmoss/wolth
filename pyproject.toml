@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wolth"
-version = "0.6.0"
+version = "0.7.0"
 description = "wolth is a useful toolkit."
 readme = "README.md"
 authors = [
@@ -21,6 +21,7 @@ license = {text = "MIT"}
 dependencies = [
   "typer",
   "rich",
+  "psutil>=7.2.2",
 ]
 requires-python = ">= 3.12"
 
