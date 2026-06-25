@@ -680,7 +680,6 @@ version = "0.7.0"
 source = { editable = "." }
 dependencies = [
     { name = "psutil" },
-    { name = "rich" },
     { name = "typer" },
 ]
 
@@ -709,7 +708,6 @@ typecheck = [
 [package.metadata]
 requires-dist = [
     { name = "psutil", specifier = ">=7.2.2" },
-    { name = "rich" },
     { name = "typer" },
 ]
 
