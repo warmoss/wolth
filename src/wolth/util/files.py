@@ -21,7 +21,7 @@ def read_lines(filename):
     """
     if not os.path.isfile(filename):
         return None
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         return f.readlines()
 
 
@@ -37,7 +37,7 @@ def read_all(filename):
     """
     if not os.path.isfile(filename):
         return None
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         return "".join(f.readlines())
 
 
@@ -49,7 +49,7 @@ def write_all(filename, data, mode="w"):
         data: The string content to write.
         mode: File-open mode (default ``"w"``). Use ``"a"`` to append.
     """
-    with open(filename, mode) as f:
+    with open(filename, mode, encoding="utf-8") as f:
         f.write(data)
 
 
