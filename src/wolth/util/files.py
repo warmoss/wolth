@@ -1,12 +1,11 @@
 """File and directory I/O utilities.
 
-Provides convenience wrappers around :mod:`os`, :mod:`shutil`, and :mod:`zipfile`
+Provides convenience wrappers around :mod:`os` and :mod:`shutil`
 for common file-system operations.
 """
 
 import os
 import shutil
-import zipfile
 
 
 def read_lines(filename):
@@ -113,16 +112,23 @@ def remove(filename):
     os.remove(filename)
 
 
-def zip(source: str, archive_to: str, format="zip"):
-    shutil.make_archive(archive_to, format, source)
-
-
-def unzip(filename: str, extract_to: str):
-    """Extract a ZIP archive into a target directory.
+def archive(source: str, dest: str, format="zip"):
+    """Create an archive of a directory.
 
     Args:
-        filename: Path to the ZIP file.
-        extract_to: Destination directory.
+        source: Path to the directory to archive.
+        dest: Base name of the archive to create (without extension).
+        format: Archive format (default ``"zip"``).
     """
-    with zipfile.ZipFile(filename, "r") as zip_ref:
-        zip_ref.extractall(extract_to)
+    shutil.make_archive(dest, format, source)
+
+
+def extract(source: str, dest: str, format="zip"):
+    """Extract an archive to a directory.
+
+    Args:
+        source: Path to the archive file to extract.
+        dest: Path to the directory where files will be extracted.
+        format: Archive format (default ``"zip"``).
+    """
+    shutil.unpack_archive(source, dest, format)
