@@ -10,9 +10,10 @@ Additionally, :class:`ComplexEncoder` handles :class:`~datetime.date` and
 """
 
 import json
-from wolth.util import files
 from datetime import date, datetime
+
 from wolth.collections import EnhancedDict
+from wolth.util import files
 
 
 class ComplexEncoder(json.JSONEncoder):
@@ -81,8 +82,7 @@ def dump(filename: str, obj):
         filename: Path to the output file.
         obj: Any JSON-serializable object.
     """
-    content = json.dumps(obj, cls=ComplexEncoder, ensure_ascii=False, indent=2)
-    files.write_all(filename, content)
+    files.write_all(filename, dumps(obj))
 
 
 def load(filename: str):

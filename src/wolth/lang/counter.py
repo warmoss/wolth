@@ -5,7 +5,7 @@ counting scenarios (e.g. ID generation, iteration tracking).
 """
 
 
-class Counter(object):
+class Counter:
     """A simple, thread-unsafe incrementing counter.
 
     Args:

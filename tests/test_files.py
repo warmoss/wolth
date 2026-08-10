@@ -15,6 +15,7 @@ from wolth.util.files import (
     rmdirs,
     mkdirs,
     remove,
+    zip,
     unzip,
 )
 
@@ -88,13 +89,13 @@ class TestWriteAll:
     @patch("builtins.open", new_callable=mock_open)
     def test_write_all_writes_data(self, mock_file):
         write_all("/tmp/test.txt", "Hello, World!")
-        mock_file.assert_called_once_with("/tmp/test.txt", "w")
+        mock_file.assert_called_once_with("/tmp/test.txt", "w", encoding="utf-8")
         mock_file().write.assert_called_once_with("Hello, World!")
 
     @patch("builtins.open", new_callable=mock_open)
     def test_write_all_append_mode(self, mock_file):
         write_all("/tmp/test.txt", "more data", mode="a")
-        mock_file.assert_called_once_with("/tmp/test.txt", "a")
+        mock_file.assert_called_once_with("/tmp/test.txt", "a", encoding="utf-8")
         mock_file().write.assert_called_once_with("more data")
 
     @patch("builtins.open", new_callable=mock_open)
@@ -226,6 +227,91 @@ class TestRemove:
         mock_remove.side_effect = FileNotFoundError()
         with pytest.raises(FileNotFoundError):
             remove("/tmp/nonexistent.txt")
+
+
+# ──────────────────────────────────────────────
+# zip
+# ──────────────────────────────────────────────
+
+
+class TestZip:
+    """Tests for zip."""
+
+    @patch("wolth.util.files.os.walk")
+    @patch("wolth.util.files.zipfile.ZipFile")
+    @patch("wolth.util.files.os.path.exists")
+    @patch("wolth.util.files.os.path.isdir")
+    def test_zip_creates_archive(
+        self, mock_isdir, mock_exists, mock_zip, mock_walk
+    ):
+        mock_exists.return_value = True
+        mock_isdir.return_value = True
+        mock_walk.return_value = [
+            ("/src", ["sub"], ["a.txt", "b.txt"]),
+            (os.path.join("/src", "sub"), [], ["c.txt"]),
+        ]
+        mock_instance = mock_zip.return_value.__enter__.return_value
+
+        zip("/src", "/tmp/out.zip")
+
+        mock_zip.assert_called_once_with("/tmp/out.zip", "w", zipfile.ZIP_DEFLATED)
+        assert mock_instance.write.call_count == 3
+        mock_instance.write.assert_any_call(
+            os.path.join("/src", "a.txt"), "a.txt"
+        )
+        mock_instance.write.assert_any_call(
+            os.path.join("/src", "b.txt"), "b.txt"
+        )
+        mock_instance.write.assert_any_call(
+            os.path.join("/src", "sub", "c.txt"),
+            os.path.join("sub", "c.txt"),
+        )
+
+    @patch("wolth.util.files.os.path.exists")
+    def test_zip_source_not_found(self, mock_exists):
+        mock_exists.return_value = False
+        with pytest.raises(FileNotFoundError):
+            zip("/nonexistent", "/tmp/out.zip")
+
+    @patch("wolth.util.files.os.path.exists")
+    @patch("wolth.util.files.os.path.isdir")
+    def test_zip_source_is_file_not_dir(self, mock_isdir, mock_exists):
+        mock_exists.return_value = True
+        mock_isdir.return_value = False
+        with pytest.raises(NotADirectoryError):
+            zip("/tmp/file.txt", "/tmp/out.zip")
+
+    @patch("wolth.util.files.os.walk")
+    @patch("wolth.util.files.zipfile.ZipFile")
+    @patch("wolth.util.files.os.path.exists")
+    @patch("wolth.util.files.os.path.isdir")
+    def test_zip_empty_directory(
+        self, mock_isdir, mock_exists, mock_zip, mock_walk
+    ):
+        mock_exists.return_value = True
+        mock_isdir.return_value = True
+        mock_walk.return_value = []
+        mock_instance = mock_zip.return_value.__enter__.return_value
+
+        zip("/src", "/tmp/out.zip")
+
+        mock_zip.assert_called_once_with("/tmp/out.zip", "w", zipfile.ZIP_DEFLATED)
+        mock_instance.write.assert_not_called()
+
+    @patch("wolth.util.files.os.walk")
+    @patch("wolth.util.files.zipfile.ZipFile")
+    @patch("wolth.util.files.os.path.exists")
+    @patch("wolth.util.files.os.path.isdir")
+    def test_zip_uses_context_manager(
+        self, mock_isdir, mock_exists, mock_zip, mock_walk
+    ):
+        mock_exists.return_value = True
+        mock_isdir.return_value = True
+        mock_walk.return_value = []
+
+        zip("/src", "/tmp/out.zip")
+
+        mock_zip.return_value.__enter__.assert_called_once()
 
 
 # ──────────────────────────────────────────────

@@ -38,7 +38,7 @@ def read_all(filename):
     if not os.path.isfile(filename):
         return None
     with open(filename, "r", encoding="utf-8") as f:
-        return "".join(f.readlines())
+        return f.read()
 
 
 def write_all(filename, data, mode="w"):
@@ -111,6 +111,10 @@ def remove(filename):
         OSError: If the path is a directory (use :func:`rmdirs` instead).
     """
     os.remove(filename)
+
+
+def zip(source: str, archive_to: str, format="zip"):
+    shutil.make_archive(archive_to, format, source)
 
 
 def unzip(filename: str, extract_to: str):
