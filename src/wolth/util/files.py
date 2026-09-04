@@ -132,3 +132,7 @@ def extract(source: str, dest: str, format="zip"):
         format: Archive format (default ``"zip"``).
     """
     shutil.unpack_archive(source, dest, format)
+
+
+def copy(source: str, dest: str, override=True):
+    pass
