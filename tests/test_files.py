@@ -7,6 +7,7 @@ import pytest
 
 from wolth.util.files import (
     archive,
+    copy,
     exists,
     extract,
     mkdirs,
@@ -377,3 +378,99 @@ class TestExtract:
 
         assert dest.is_dir()
         assert (dest / "f.txt").read_text(encoding="utf-8") == "data"
+
+
+# ──────────────────────────────────────────────
+# copy
+# ──────────────────────────────────────────────
+
+
+class TestCopy:
+    """Tests for copy."""
+
+    def test_copy_file(self, tmp_path):
+        source = tmp_path / "source.txt"
+        source.write_text("hello", encoding="utf-8")
+        dest = tmp_path / "dest.txt"
+        result = copy(str(source), str(dest))
+        assert result == str(dest)
+        assert dest.read_text(encoding="utf-8") == "hello"
+
+    def test_copy_file_creates_parent_folders(self, tmp_path):
+        """Copying to a path whose parent folders are missing should create them."""
+        source = tmp_path / "source.txt"
+        source.write_text("data", encoding="utf-8")
+        dest = tmp_path / "a" / "b" / "c" / "dest.txt"
+        copy(str(source), str(dest))
+        assert dest.read_text(encoding="utf-8") == "data"
+
+    def test_copy_file_into_directory(self, tmp_path):
+        """Copying a file onto an existing directory keeps its base name."""
+        source = tmp_path / "source.txt"
+        source.write_text("data", encoding="utf-8")
+        dest = tmp_path / "folder"
+        dest.mkdir()
+        copy(str(source), str(dest))
+        assert (dest / "source.txt").read_text(encoding="utf-8") == "data"
+
+    def test_copy_file_override(self, tmp_path):
+        source = tmp_path / "source.txt"
+        source.write_text("new", encoding="utf-8")
+        dest = tmp_path / "dest.txt"
+        dest.write_text("old", encoding="utf-8")
+        copy(str(source), str(dest), override=True)
+        assert dest.read_text(encoding="utf-8") == "new"
+
+    def test_copy_file_no_override_raises(self, tmp_path):
+        source = tmp_path / "source.txt"
+        source.write_text("new", encoding="utf-8")
+        dest = tmp_path / "dest.txt"
+        dest.write_text("old", encoding="utf-8")
+        with pytest.raises(FileExistsError):
+            copy(str(source), str(dest), override=False)
+        # The existing file must not be touched.
+        assert dest.read_text(encoding="utf-8") == "old"
+
+    def test_copy_directory(self, tmp_path):
+        source = tmp_path / "src"
+        source.mkdir()
+        (source / "a.txt").write_text("a", encoding="utf-8")
+        (source / "sub").mkdir()
+        (source / "sub" / "b.txt").write_text("b", encoding="utf-8")
+        dest = tmp_path / "dst"
+        copy(str(source), str(dest))
+        assert (dest / "a.txt").read_text(encoding="utf-8") == "a"
+        assert (dest / "sub" / "b.txt").read_text(encoding="utf-8") == "b"
+
+    def test_copy_directory_creates_parent_folders(self, tmp_path):
+        source = tmp_path / "src"
+        source.mkdir()
+        (source / "f.txt").write_text("data", encoding="utf-8")
+        dest = tmp_path / "x" / "y" / "dst"
+        copy(str(source), str(dest))
+        assert (dest / "f.txt").read_text(encoding="utf-8") == "data"
+
+    def test_copy_directory_override(self, tmp_path):
+        """Overriding a directory removes leftover files for an exact mirror."""
+        source = tmp_path / "src"
+        source.mkdir()
+        (source / "f.txt").write_text("keep", encoding="utf-8")
+        dest = tmp_path / "dst"
+        dest.mkdir()
+        (dest / "old.txt").write_text("stale", encoding="utf-8")
+        copy(str(source), str(dest), override=True)
+        assert (dest / "f.txt").read_text(encoding="utf-8") == "keep"
+        assert not (dest / "old.txt").exists()
+
+    def test_copy_directory_no_override_raises(self, tmp_path):
+        source = tmp_path / "src"
+        source.mkdir()
+        (source / "f.txt").write_text("data", encoding="utf-8")
+        dest = tmp_path / "dst"
+        dest.mkdir()
+        with pytest.raises(FileExistsError):
+            copy(str(source), str(dest), override=False)
+
+    def test_copy_source_not_found(self, tmp_path):
+        with pytest.raises(FileNotFoundError):
+            copy(str(tmp_path / "missing"), str(tmp_path / "out"))

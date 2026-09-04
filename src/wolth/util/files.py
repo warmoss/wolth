@@ -135,4 +135,46 @@ def extract(source: str, dest: str, format="zip"):
 
 
 def copy(source: str, dest: str, override=True):
-    pass
+    """Copy a file or directory to *dest*.
+
+    Copies the file, or the whole directory tree, at *source* to *dest*.
+    Missing parent folders of *dest* are created automatically.
+
+    Args:
+        source: Path of the file or directory to copy.
+        dest: Destination path. If it is an existing directory, *source*
+            is copied into it and keeps its base name.
+        override: Whether to replace an existing destination (default
+            ``True``). When ``False``, an existing *dest* raises an error.
+
+    Returns:
+        The path that the file or directory was copied to.
+
+    Raises:
+        FileNotFoundError: If *source* does not exist.
+        FileExistsError: If *dest* already exists and *override* is False.
+    """
+    if not os.path.exists(source):
+        raise FileNotFoundError(f"source path does not exist: {source}")
+
+    # Copying a file onto an existing directory keeps its base name.
+    if os.path.isfile(source) and os.path.isdir(dest):
+        dest = os.path.join(dest, os.path.basename(source))
+
+    parent = os.path.dirname(dest)
+    if parent:
+        mkdirs(parent)
+
+    if os.path.isdir(source):
+        if os.path.exists(dest) and not override:
+            raise FileExistsError(f"destination already exists: {dest}")
+        if os.path.exists(dest):
+            if os.path.isdir(dest):
+                rmdirs(dest)
+            else:
+                remove(dest)
+        return shutil.copytree(source, dest)
+
+    if os.path.exists(dest) and not override:
+        raise FileExistsError(f"destination already exists: {dest}")
+    return shutil.copy2(source, dest)
