@@ -17,6 +17,7 @@ wolth is a useful toolkit.
 * util.files
 * util.jsons
 * util.processes
+* util.identities
 
 ## Documentation
 
